@@ -8,20 +8,23 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState('');
   const { login } = useGlobalContext();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      return setError("Passwords do not match");
-    }
 
     try {
       setError("");
       setLoading(true);
       await login(email, password);
+      setSuccessMessage('Account created successfully');
+      setLoggedIn(true);
+      setEmail("");
+      setPassword("");
+      navigate("/");
     } catch (error) {
       console.log(error);
       setError("Failed to sign in");
@@ -32,6 +35,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
+      {successMessage && <p className="register-success">{successMessage}</p>}
         <h2 className="login-title">Login</h2>
         {error && <p className="register-error">{error}</p>}
         <div className="login-inputs">
@@ -52,10 +56,10 @@ const Login = () => {
             placeholder="Enter your password"
           />
           <button type="submit" className="login-button" disabled={loading}>
-            <Link to="/" className="nav-link">
+            <Link className="nav-link">
               Login
             </Link>
-          </button>
+                      </button>
           <div className="login-link">
             Need an account?
             <Link to="/register" className="nav-link nav-login">

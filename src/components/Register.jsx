@@ -10,7 +10,8 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [gender, setGender] = useState('');
   const [country, setCountry] = useState('');
-  const { signup, currentUser } = useGlobalContext();
+  const [successMessage, setSuccessMessage] = useState('');
+  const { signup, setCurrentUser } = useGlobalContext();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -25,10 +26,18 @@ const Register = () => {
       setError('');
       setLoading(true);
       await signup(email, password);
+      setSuccessMessage('Account created successfully');
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setGender('');
+      setCountry('');
+      setCurrentUser(true);
     }
     catch (error) {
       console.log(error);
-      setError('Failed to create an account');
+      setError('Failed to create an account\n' + error.message);
     }
     setLoading(false);
   }
@@ -37,8 +46,7 @@ const Register = () => {
     <div className="register-container">
       <form className="register-form" onSubmit={handleSubmit}>
         <h2 className="register-title">Sign Up</h2>
-        {/* {currentUser && <p className="register-success">Account created successfully</p>} */}
-        {/* {currentUser && currentUser.email} */}
+        {successMessage && <p className="register-success">{successMessage}</p>}
         {error && <p className="register-error">{error}</p>}
         <div className="register-inputs">
           <label className="register-label">Name:</label>

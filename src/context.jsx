@@ -17,11 +17,13 @@ const AppProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState('')
   const [showModal, setShowModal] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
-  const [currentUser, setCurrentUser] = useState();
   const [loadings, setLoadings] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
 
   function signup(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
+    const user = auth.createUserWithEmailAndPassword(email, password);
+    console.log(user);
+    return user;
   }
 
   function login(email, password) {
@@ -91,11 +93,17 @@ const AppProvider = ({ children }) => {
     setCartItems((prev) => ({ ...prev, [id]: newAmount }))
   }
 
+  function logout() {
+    return auth.signOut();
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoadings(false);
     });
+    
+    return unsubscribe;
   }, []);
 
   useEffect(() => {

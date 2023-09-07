@@ -167,6 +167,7 @@ ul {
 
 /* Navbar.css */
 
+/* 155263 */
 .navbar {
   background:#155263;
   padding: 10px 0;
@@ -188,7 +189,7 @@ ul {
 }
 
 .navbar-nav-center {
-  width:65rem;
+  width:80rem;
   display: flex;
   align-items: left;
   justify-content: left; /* Center the navigation links */
@@ -202,19 +203,54 @@ ul {
 
 .nav-link {
   color: #fff;
+  font-size: 1.25rem;
   text-decoration: none;
   transition: color 0.3s;
+  margin-left: 1rem;
 }
 
+/* 007bff */
 .nav-link:hover {
-  color: #007bff;
+  color:  #F0C993;
 }
 
 .nav-cart{
-  font-size:1.5rem;
-  margin-left:35rem;
+  font-size:1.75rem;
+  margin-left:30rem;
   
 }
+
+.nav-profile{
+  margin-top: 20px;
+  font-size:1.75rem;
+  margin-left:2rem;
+  margin-bottom: 0;
+}
+
+.nav-logout{
+  font-size:1.25rem;
+  margin-left:4rem;
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  color: #fff;
+  transition:var(--transition);
+}
+
+.nav-logout:hover{
+  color: #007bff;
+}
+
+.nav-login:hover{
+  color: #007bff;
+}
+
+.user-info{
+  text-align: center;
+  margin: 10px;
+  font-size: 1.25rem;
+}
+
 /* Categories.css */
 
 .categories-container {
@@ -1157,4 +1193,26 @@ input[type=text]:focus{
   margin: 10px;
 }
 
+.register-success {
+  color: rgb(1, 91, 1);
+  background-color: #a9f6b2;
+  border: 2px solid #a0eac1;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px; 
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ee9004;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f35e02;
+}
 

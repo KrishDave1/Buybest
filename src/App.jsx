@@ -12,15 +12,17 @@ import StarsCanvas from './components/canvas/Stars';
 import Login from './components/Login';
 import Register from './components/Register';
 import Payments from './components/Payments';
-import { useGlobalContext } from './context'
+import { useGlobalContext } from './context';
+import Profile from './components/Profile';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 export default function App() {
-  const { showModal } = useGlobalContext()
+  const { showModal,currentUser } = useGlobalContext()
   return (
     <Router scrollRestoration="auto">
       <main>
         <Navbar />
+        {currentUser && <div className="user-info"> <strong className="nav-user-name">Welcome,   {currentUser.email}</strong></div>}
         {showModal && <Modal />}
         <Routes>
           <Route path='/' element={
@@ -50,6 +52,10 @@ export default function App() {
             </div>
           }>
           </Route>
+          <Route
+            path='/profile'
+            element={<Profile />}
+          />
           <Route path='/login' element={
             <>
               <Login />
