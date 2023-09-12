@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobalContext } from '../context';
+import { useNavigate } from 'react-router-dom';
 
 
 const Register = () => {
@@ -11,9 +12,10 @@ const Register = () => {
   const [gender, setGender] = useState('');
   const [country, setCountry] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const { signup, setCurrentUser } = useGlobalContext();
+  const { signup, setCurrentUser, currentUser } = useGlobalContext();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function handleSubmit(e){
     e.preventDefault();
@@ -33,7 +35,11 @@ const Register = () => {
       setConfirmPassword('');
       setGender('');
       setCountry('');
-      setCurrentUser(true);
+      setCurrentUser(email);
+      console.log(currentUser);
+      setTimeout(() => {
+        navigate('/')
+      }, 2000);
     }
     catch (error) {
       console.log(error);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context";
@@ -20,11 +20,13 @@ const Login = () => {
       setError("");
       setLoading(true);
       await login(email, password);
-      setSuccessMessage('Account created successfully');
-      setLoggedIn(true);
+      setSuccessMessage('Logging in ...');
       setEmail("");
       setPassword("");
-      navigate("/");
+      setLoggedIn(true);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       console.log(error);
       setError("Failed to sign in");
@@ -59,14 +61,17 @@ const Login = () => {
             <Link className="nav-link">
               Login
             </Link>
-                      </button>
+          </button>
+          <Link to="/forgot-password" className="nav-forgot">
+            Forgot Password?
+          </Link>
           <div className="login-link">
             Need an account?
             <Link to="/register" className="nav-link nav-login">
               Sign Up
             </Link>
           </div>
-        </div>
+        </div> 
       </form>
     </div>
   );

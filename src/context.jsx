@@ -18,11 +18,10 @@ const AppProvider = ({ children }) => {
   const [showModal, setShowModal] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [loadings, setLoadings] = useState(true);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState('');
 
   function signup(email, password) {
     const user = auth.createUserWithEmailAndPassword(email, password);
-    console.log(user);
     return user;
   }
 
@@ -30,7 +29,9 @@ const AppProvider = ({ children }) => {
     return auth.signInWithEmailAndPassword(email, password);
   }
 
-   
+  function resetPassword(email) {
+    return auth.sendPasswordResetEmail(email);
+  }
 
   const getDefaultCart = () => {
     let cart = {}
@@ -92,11 +93,7 @@ const AppProvider = ({ children }) => {
   const updateCartItemCount = (newAmount, id) => {
     setCartItems((prev) => ({ ...prev, [id]: newAmount }))
   }
-
-  function logout() {
-    return auth.signOut();
-  }
-
+  
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -115,7 +112,7 @@ const AppProvider = ({ children }) => {
   // }, [cartItems])
 
   return (
-    <AppContext.Provider value={{ loading, products, categoriesProducts, setCategoriesProducts, searchTerm, setSearchTerm, showModal, selectProduct, selectedProduct, closeModal, cartItems, setCartItems,addToCart, removeFromCart, updateCartItemCount,signup,currentUser,login }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ loading, products, categoriesProducts, setCategoriesProducts, searchTerm, setSearchTerm, showModal, selectProduct, selectedProduct, closeModal, cartItems, setCartItems,addToCart, removeFromCart, updateCartItemCount,signup,currentUser,setCurrentUser, login,resetPassword }}>{children}</AppContext.Provider>
   )
 }
 

@@ -1,5 +1,5 @@
 // Navbar.js
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useGlobalContext } from "../context";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -61,13 +61,6 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              {/* <Link className='nav-link' to='/login'>
-                Login
-              </Link>
-              /
-              <Link className='nav-link' to='/register'>
-                Register
-              </Link> */}
               {currentUser ? (
                 <>
                 <Link to="/profile" className="nav-link nav-profile"><CgProfile /></Link>

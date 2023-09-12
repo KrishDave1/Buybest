@@ -1,15 +1,16 @@
-// Profile.js
-import React from 'react';
+import { useGlobalContext } from '../context';
 
 const Profile = () => {
   // Assuming you have a way to access user information
-    const user = 'hello'// ... get user information from your authentication system
+  const { currentUser } = useGlobalContext();
   
   return (
     <div>
-      <h2>Welcome, {user.name}!</h2>
+      <h2>Welcome {currentUser}!</h2>
     </div>
     );
 };
 
 export default Profile;
+
+

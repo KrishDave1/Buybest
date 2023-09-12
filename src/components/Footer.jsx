@@ -1,5 +1,3 @@
-import React from 'react';
-
 var today = new Date();
 
 const Footer = () => {
